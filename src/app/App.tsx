@@ -133,30 +133,30 @@ function MainApp() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#E60000]/10 blur-[120px] rounded-full" />
       </div>
 
+      {/* Animated Flying Logo (Starts in header visual space, flies down) */}
+      <motion.div 
+        style={{ 
+          y: flyingLogoY, 
+          x: flyingLogoX,
+          rotate: flyingLogoRotate,
+          scale: flyingLogoScale
+        }}
+        className="fixed left-6 top-4 z-50 pointer-events-none origin-center"
+      >
+        <motion.div
+          animate={{ y: [0, -10, 0], x: [0, 5, -5, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="w-12 h-12 md:w-16 md:h-16"
+        >
+          <HummingbirdLogo className="w-full h-full text-[#E60000] drop-shadow-[0_0_15px_rgba(230,0,0,0.6)]" />
+        </motion.div>
+      </motion.div>
+
       <div className="relative z-10 flex flex-col min-h-screen">
         
         {/* Header */}
         <header className="px-6 py-4 flex items-center justify-between border-b border-[#333333] bg-[#0A0A0A]/80 backdrop-blur-md sticky top-0 z-50">
           
-          {/* Animated Flying Logo (Starts in header, flies down) */}
-          <motion.div 
-            style={{ 
-              y: flyingLogoY, 
-              x: flyingLogoX,
-              rotate: flyingLogoRotate,
-              scale: flyingLogoScale
-            }}
-            className="absolute left-6 top-1/2 -translate-y-1/2 z-50 pointer-events-none origin-center"
-          >
-            <motion.div
-              animate={{ y: [0, -10, 0], x: [0, 5, -5, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="w-12 h-12 md:w-16 md:h-16"
-            >
-              <HummingbirdLogo className="w-full h-full text-[#E60000] drop-shadow-[0_0_15px_rgba(230,0,0,0.6)]" />
-            </motion.div>
-          </motion.div>
-
           {/* Invisible spacer to balance the flex layout */}
           <div className="w-10"></div>
           
