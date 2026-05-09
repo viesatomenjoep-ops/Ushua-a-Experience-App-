@@ -127,7 +127,7 @@ function MainApp() {
         </header>
 
         {/* Navigation */}
-        <div className="px-6 py-8 flex justify-center sticky top-[72px] z-40 bg-gradient-to-b from-[#0A0A0A] to-transparent pb-10">
+        <div className="px-6 py-8 flex justify-center pb-10 relative z-10">
           <div className="bg-[#1A1A1A] p-1.5 rounded-2xl inline-flex flex-wrap justify-center gap-1 border border-[#333333] shadow-xl">
             {[
               { id: 'pitch', label: t('nav.pitch') },
