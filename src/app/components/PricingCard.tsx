@@ -28,7 +28,7 @@ export function PricingCard({ title, price, description, features, highlightColo
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      className={`relative rounded-2xl border ${borderColor} bg-[#111111] overflow-hidden flex flex-col`}
+      className={`relative rounded-none border ${borderColor} bg-black overflow-hidden flex flex-col`}
     >
       {isGold && (
         <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#D4AF37] via-yellow-200 to-[#D4AF37]" />
@@ -53,7 +53,7 @@ export function PricingCard({ title, price, description, features, highlightColo
           ))}
         </ul>
         
-        <button className={`w-full py-3 rounded-xl font-bold transition-all duration-300 shadow-lg ${buttonColor}`}>
+        <button className={`w-full py-3 rounded-none font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg ${buttonColor}`}>
           Select Model
         </button>
       </div>
