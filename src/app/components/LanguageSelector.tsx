@@ -4,27 +4,19 @@ import { Globe } from 'lucide-react';
 export function LanguageSelector() {
   const { language, setLanguage } = useLanguage();
 
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'es' : 'en');
+  };
+
   return (
-    <div className="flex items-center gap-2 bg-[#1A1A1A] border border-[#333333] rounded-full px-3 py-1.5">
-      <Globe className="w-4 h-4 text-[#D4AF37]" />
-      <div className="flex gap-1 text-sm font-medium">
-        <button
-          onClick={() => setLanguage('en')}
-          className={`px-2 py-0.5 rounded-full transition-colors ${
-            language === 'en' ? 'bg-[#E60000] text-white' : 'text-gray-400 hover:text-white'
-          }`}
-        >
-          EN
-        </button>
-        <button
-          onClick={() => setLanguage('es')}
-          className={`px-2 py-0.5 rounded-full transition-colors ${
-            language === 'es' ? 'bg-[#E60000] text-white' : 'text-gray-400 hover:text-white'
-          }`}
-        >
-          ES
-        </button>
-      </div>
-    </div>
+    <button
+      onClick={toggleLanguage}
+      className="flex items-center gap-2 bg-transparent border border-[#333333] hover:border-[#E60000] px-3 py-1.5 transition-colors group"
+    >
+      <Globe className="w-4 h-4 text-[#D4AF37] group-hover:text-[#E60000] transition-colors" />
+      <span className="text-xs font-bold tracking-widest text-white uppercase">
+        {language === 'en' ? 'EN' : 'ES'}
+      </span>
+    </button>
   );
 }
