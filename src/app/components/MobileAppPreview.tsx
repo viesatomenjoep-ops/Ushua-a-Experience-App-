@@ -153,13 +153,20 @@ export function MobileAppPreview() {
       </div>
 
       {/* Interactive Device Frame */}
-      <div 
-        className={`relative bg-black border-[#1A1A1A] shadow-2xl overflow-hidden flex flex-col transition-all duration-500 ease-in-out ${
-          device === 'iphone' 
-            ? 'w-[320px] h-[680px] rounded-[3rem] border-[14px]' 
-            : 'w-[700px] h-[900px] rounded-[2rem] border-[24px]'
-        }`}
-      >
+      <div className="w-full flex justify-center px-2 md:px-4">
+        <div 
+          className={`relative bg-black border-[#1A1A1A] shadow-2xl overflow-hidden flex flex-col transition-all duration-500 ease-in-out mx-auto ${
+            device === 'iphone' 
+              ? 'rounded-[2.5rem] border-[10px] md:border-[14px]' 
+              : 'rounded-[1.5rem] md:rounded-[2rem] border-[12px] md:border-[24px]'
+          }`}
+          style={{
+            height: device === 'iphone' ? 'min(80vh, 800px)' : 'min(80vh, 1000px)',
+            width: 'auto',
+            maxWidth: '100%',
+            aspectRatio: device === 'iphone' ? '9/19' : '3/4',
+          }}
+        >
         {/* Notch (iPhone only) */}
         {device === 'iphone' && (
           <div className="absolute top-0 inset-x-0 h-6 bg-[#1A1A1A] rounded-b-3xl w-40 mx-auto z-50"></div>
@@ -211,6 +218,7 @@ export function MobileAppPreview() {
           </button>
         </div>
       </div>
+    </div>
     </motion.div>
   );
 }
