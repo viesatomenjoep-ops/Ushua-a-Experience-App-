@@ -141,12 +141,12 @@ function MainApp() {
           rotate: flyingLogoRotate,
           scale: flyingLogoScale
         }}
-        className="fixed left-6 top-4 z-50 pointer-events-none origin-center hidden md:block"
+        className="fixed left-6 top-4 md:top-6 z-50 pointer-events-none origin-center hidden md:block"
       >
         <motion.div
           animate={{ y: [0, -10, 0], x: [0, 5, -5, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="w-12 h-12 md:w-16 md:h-16"
+          className="w-10 h-10 md:w-12 md:h-12"
         >
           <HummingbirdLogo className="w-full h-full text-[#E60000] drop-shadow-[0_0_15px_rgba(230,0,0,0.6)]" />
         </motion.div>
@@ -155,14 +155,14 @@ function MainApp() {
       <div className="relative z-10 flex flex-col min-h-screen">
         
         {/* Header */}
-        <header className="px-6 py-4 flex items-center justify-between border-b border-[#333333] bg-black/90 backdrop-blur-md sticky top-0 z-50">
+        <header className="px-6 py-4 md:py-6 flex items-center justify-between border-b border-[#333333] bg-black/90 backdrop-blur-md sticky top-0 z-50">
           
           {/* Mobile Logo (Bobbing up and down, stays in header) */}
           <div className="absolute left-6 top-1/2 -translate-y-1/2 z-50 pointer-events-none md:hidden">
             <motion.div
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="w-10 h-10"
+              className="w-8 h-8"
             >
               <HummingbirdLogo className="w-full h-full text-[#E60000] drop-shadow-[0_0_10px_rgba(230,0,0,0.6)]" />
             </motion.div>
@@ -171,12 +171,13 @@ function MainApp() {
           {/* Invisible spacer to balance the flex layout */}
           <div className="w-10"></div>
           
-          {/* Centered Text */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-4">
-            <div className="text-left">
-              <h1 className="text-xl md:text-2xl font-black tracking-tight leading-none">USHUAÏA</h1>
-              <p className="text-[10px] md:text-xs text-[#D4AF37] tracking-widest uppercase font-bold">Experience Pitch</p>
-            </div>
+          {/* Centered Logo (Replacing Text) */}
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none">
+            <img 
+              src="/ushuaia-logo.png" 
+              alt="Ushuaia Luanda Beach Club" 
+              className="h-10 md:h-12 object-contain"
+            />
           </div>
           
           <div className="relative z-10">
