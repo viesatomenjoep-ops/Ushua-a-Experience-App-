@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage, LanguageProvider } from './context/LanguageContext';
 import { LanguageSelector } from './components/LanguageSelector';
 import { PricingCard } from './components/PricingCard';
@@ -8,6 +8,28 @@ import { StaffDashboardView } from './components/StaffDashboardView';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { HummingbirdLogo } from './components/HummingbirdLogo';
 import '../styles/custom.css';
+
+function CustomCursor() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const updateMousePosition = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', updateMousePosition);
+    return () => window.removeEventListener('mousemove', updateMousePosition);
+  }, []);
+
+  return (
+    <motion.div
+      className="fixed top-0 left-0 z-[99999] pointer-events-none"
+      animate={{ x: mousePosition.x - 12, y: mousePosition.y - 12 }}
+      transition={{ type: 'spring', stiffness: 500, damping: 28, mass: 0.5 }}
+    >
+      <HummingbirdLogo className="w-6 h-6 text-[#E60000] drop-shadow-[0_0_8px_rgba(230,0,0,0.8)]" />
+    </motion.div>
+  );
+}
 
 function PitchOverview() {
   const { t } = useLanguage();
@@ -91,11 +113,11 @@ function MainApp() {
   const { scrollYProgress } = useScroll();
   const flyingLogoY = useTransform(scrollYProgress, 
     [0, 0.2, 0.4, 0.6, 0.8, 1], 
-    ['2vh', '35vh', '25vh', '65vh', '50vh', '90vh']
+    ['0px', '35vh', '25vh', '65vh', '50vh', '90vh']
   );
   const flyingLogoX = useTransform(scrollYProgress, 
     [0, 0.2, 0.4, 0.6, 0.8, 1], 
-    ['20px', '150px', '40px', '220px', '60px', '180px']
+    ['0px', '130px', '20px', '200px', '40px', '160px']
   );
   const flyingLogoRotate = useTransform(scrollYProgress, 
     [0, 0.2, 0.4, 0.6, 0.8, 1], 
@@ -108,36 +130,37 @@ function MainApp() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#E60000] selection:text-white relative">
+      <CustomCursor />
       
       {/* Global Background Glow */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#E60000]/10 blur-[120px] rounded-full" />
       </div>
 
-      {/* Free-floating Bird with Dynamic Flight Path */}
-      <motion.div 
-        style={{ 
-          y: flyingLogoY, 
-          x: flyingLogoX,
-          rotate: flyingLogoRotate,
-          scale: flyingLogoScale
-        }}
-        className="fixed top-0 left-0 z-50 pointer-events-none origin-center"
-      >
-        <motion.div
-          animate={{ y: [0, -20, 0], x: [0, 10, -5, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="w-16 h-16 md:w-24 md:h-24"
-        >
-          <HummingbirdLogo className="w-full h-full text-[#E60000] drop-shadow-[0_0_20px_rgba(230,0,0,0.6)]" />
-        </motion.div>
-      </motion.div>
-
       <div className="relative z-10 flex flex-col min-h-screen">
         
         {/* Header */}
         <header className="px-6 py-4 flex items-center justify-between border-b border-[#333333] bg-[#0A0A0A]/80 backdrop-blur-md sticky top-0 z-50">
           
+          {/* Animated Flying Logo (Starts in header, flies down) */}
+          <motion.div 
+            style={{ 
+              y: flyingLogoY, 
+              x: flyingLogoX,
+              rotate: flyingLogoRotate,
+              scale: flyingLogoScale
+            }}
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-50 pointer-events-none origin-center"
+          >
+            <motion.div
+              animate={{ y: [0, -10, 0], x: [0, 5, -5, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="w-12 h-12 md:w-16 md:h-16"
+            >
+              <HummingbirdLogo className="w-full h-full text-[#E60000] drop-shadow-[0_0_15px_rgba(230,0,0,0.6)]" />
+            </motion.div>
+          </motion.div>
+
           {/* Invisible spacer to balance the flex layout */}
           <div className="w-10"></div>
           
