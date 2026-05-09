@@ -89,8 +89,22 @@ function MainApp() {
   const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff'>('pitch');
   const { t } = useLanguage();
   const { scrollYProgress } = useScroll();
-  const flyingLogoY = useTransform(scrollYProgress, [0, 1], ['10vh', '85vh']);
-  const flyingLogoX = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], ['20px', '60px', '20px', '80px', '20px']);
+  const flyingLogoY = useTransform(scrollYProgress, 
+    [0, 0.2, 0.4, 0.6, 0.8, 1], 
+    ['2vh', '35vh', '25vh', '65vh', '50vh', '90vh']
+  );
+  const flyingLogoX = useTransform(scrollYProgress, 
+    [0, 0.2, 0.4, 0.6, 0.8, 1], 
+    ['20px', '150px', '40px', '220px', '60px', '180px']
+  );
+  const flyingLogoRotate = useTransform(scrollYProgress, 
+    [0, 0.2, 0.4, 0.6, 0.8, 1], 
+    [0, 15, -15, 25, -10, 15]
+  );
+  const flyingLogoScale = useTransform(scrollYProgress,
+    [0, 0.2, 0.4, 0.6, 0.8, 1],
+    [1, 1.25, 0.9, 1.35, 0.85, 1.15]
+  );
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#E60000] selection:text-white relative">
@@ -100,17 +114,22 @@ function MainApp() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#E60000]/10 blur-[120px] rounded-full" />
       </div>
 
-      {/* Free-floating Bird on the left side */}
+      {/* Free-floating Bird with Dynamic Flight Path */}
       <motion.div 
-        style={{ y: flyingLogoY, x: flyingLogoX }}
-        className="fixed top-0 left-0 z-50 pointer-events-none"
+        style={{ 
+          y: flyingLogoY, 
+          x: flyingLogoX,
+          rotate: flyingLogoRotate,
+          scale: flyingLogoScale
+        }}
+        className="fixed top-0 left-0 z-50 pointer-events-none origin-center"
       >
         <motion.div
-          animate={{ y: [0, -15, 0], rotate: [0, 5, -5, 0] }}
+          animate={{ y: [0, -20, 0], x: [0, 10, -5, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="w-16 h-16 md:w-20 md:h-20"
+          className="w-16 h-16 md:w-24 md:h-24"
         >
-          <HummingbirdLogo className="w-full h-full text-[#E60000] drop-shadow-[0_0_15px_rgba(230,0,0,0.5)]" />
+          <HummingbirdLogo className="w-full h-full text-[#E60000] drop-shadow-[0_0_20px_rgba(230,0,0,0.6)]" />
         </motion.div>
       </motion.div>
 
