@@ -5,7 +5,8 @@ import { PricingCard } from './components/PricingCard';
 import { ROICalculator } from './components/ROICalculator';
 import { VipUpsellView } from './components/VipUpsellView';
 import { StaffDashboardView } from './components/StaffDashboardView';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
+import { HummingbirdLogo } from './components/HummingbirdLogo';
 import '../styles/custom.css';
 
 function PitchOverview() {
@@ -87,22 +88,32 @@ function PitchOverview() {
 function MainApp() {
   const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff'>('pitch');
   const { t } = useLanguage();
+  const { scrollYProgress } = useScroll();
+  const xTransform = useTransform(scrollYProgress, [0, 1], ['-40vw', '120vw']);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#E60000] selection:text-white">
+    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#E60000] selection:text-white overflow-x-hidden relative">
       
       {/* Global Background Glow */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#E60000]/10 blur-[120px] rounded-full" />
       </div>
 
+      {/* Flying Hummingbird Background Logo */}
+      <motion.div 
+        style={{ x: xTransform }} 
+        className="fixed top-[10%] left-0 z-0 opacity-[0.03] pointer-events-none"
+      >
+        <HummingbirdLogo className="w-[1200px] h-[1200px] text-[#E60000]" />
+      </motion.div>
+
       <div className="relative z-10 flex flex-col min-h-screen">
         
         {/* Header */}
         <header className="px-6 py-4 flex items-center justify-between border-b border-[#333333] bg-[#0A0A0A]/80 backdrop-blur-md sticky top-0 z-50">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-[#E60000] rounded-lg flex items-center justify-center font-black text-xl tracking-tighter shadow-lg shadow-[#E60000]/20">
-              U
+            <div className="w-10 h-10 flex items-center justify-center">
+              <HummingbirdLogo className="w-full h-full text-[#E60000]" />
             </div>
             <div>
               <h1 className="text-xl font-black tracking-tight leading-none">USHUAÏA</h1>
