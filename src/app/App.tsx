@@ -93,7 +93,7 @@ function MainApp() {
   const headerLogoX = useTransform(scrollYProgress, [0, 0.2], ['-40vw', '0vw']);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#E60000] selection:text-white overflow-x-hidden relative">
+    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#E60000] selection:text-white relative">
       
       {/* Global Background Glow */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
