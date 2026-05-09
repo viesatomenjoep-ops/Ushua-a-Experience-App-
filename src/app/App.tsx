@@ -89,7 +89,7 @@ function MainApp() {
   const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff'>('pitch');
   const { t } = useLanguage();
   const { scrollYProgress } = useScroll();
-  const headerLogoX = useTransform(scrollYProgress, [0, 0.2], ['-40vw', '0vw']);
+  const headerLogoX = useTransform(scrollYProgress, [0, 0.2], ['-45vw', '0vw']);
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#E60000] selection:text-white relative">
