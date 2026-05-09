@@ -40,7 +40,7 @@ function PitchOverview() {
           <PricingCard
             title={t('pricing.enterprise')}
             description={t('pricing.enterprise.desc')}
-            price="€25k / mo"
+            price="€12.5k / mo"
             features={[
               { text: 'Custom White-label App' },
               { text: 'Full POS & PMS Integration' },
@@ -52,7 +52,7 @@ function PitchOverview() {
           <PricingCard
             title={t('pricing.performance')}
             description={t('pricing.performance.desc')}
-            price="11% Rev Share"
+            price="5.5% Rev Share"
             highlightColor="gold"
             features={[
               { text: 'Zero Upfront Cost' },
@@ -65,7 +65,7 @@ function PitchOverview() {
           <PricingCard
             title={t('pricing.operations')}
             description={t('pricing.operations.desc')}
-            price="€15k / mo"
+            price="€7.5k / mo"
             highlightColor="red"
             features={[
               { text: 'Live SOS Command Center' },
