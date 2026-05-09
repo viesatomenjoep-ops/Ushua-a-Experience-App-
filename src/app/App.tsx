@@ -111,7 +111,7 @@ function MainApp() {
       <div className="relative z-10 flex flex-col min-h-screen">
         
         {/* Header */}
-        <header className="px-6 py-4 flex items-center justify-between border-b border-[#333333] bg-[#0A0A0A]/80 backdrop-blur-md sticky top-0 z-50 relative">
+        <header className="px-6 py-4 flex items-center justify-between border-b border-[#333333] bg-[#0A0A0A]/80 backdrop-blur-md sticky top-0 z-50">
           
           {/* Invisible spacer to balance the flex layout */}
           <div className="w-10"></div>
