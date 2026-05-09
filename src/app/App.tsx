@@ -108,7 +108,7 @@ function PitchOverview() {
 }
 
 function MainApp() {
-  const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff' | 'preview'>('pitch');
+  const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff'>('pitch');
   const { t } = useLanguage();
   const { scrollYProgress } = useScroll();
   const flyingLogoY = useTransform(scrollYProgress, [0, 1], ['0px', '85vh']);
@@ -156,7 +156,7 @@ function MainApp() {
       <div className="relative z-10 flex flex-col min-h-screen">
         
         {/* Header */}
-        <header className="px-6 py-6 md:py-10 flex items-center justify-between border-b border-[#333333] bg-black/90 backdrop-blur-md sticky top-0 z-50">
+        <header className="px-6 py-4 md:py-6 flex items-center justify-between border-b border-[#333333] bg-black/90 backdrop-blur-md sticky top-0 z-50">
           
           {/* Mobile Logo (Bobbing up and down, stays in header) */}
           <div className="absolute left-6 top-1/2 -translate-y-1/2 z-50 pointer-events-none md:hidden">
@@ -177,7 +177,7 @@ function MainApp() {
             <img 
               src="/ushuaia-logo.png" 
               alt="Ushuaia Luanda Beach Club" 
-              className="h-16 md:h-24 object-contain"
+              className="h-16 md:h-20 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
             />
           </div>
           
@@ -193,7 +193,7 @@ function MainApp() {
               { id: 'pitch', label: t('nav.pitch') },
               { id: 'vip', label: t('nav.vip') },
               { id: 'staff', label: t('nav.staff') },
-              { id: 'preview', label: t('nav.preview') },
+              { id: 'preview', label: 'App Preview' },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -231,7 +231,17 @@ function MainApp() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
               >
-                <StaffDashboardView onPreviewClick={() => setActiveTab('preview')} />
+                <div className="space-y-8">
+                  <StaffDashboardView />
+                  <div className="flex justify-center pt-8 border-t border-[#333333]">
+                    <button 
+                      onClick={() => setActiveTab('preview')}
+                      className="bg-[#E60000] text-white px-8 py-4 uppercase tracking-widest font-bold text-sm shadow-[0_0_20px_rgba(230,0,0,0.4)] hover:bg-[#ff1a1a] transition-all"
+                    >
+                      Ga naar preview app voor mobiel voor een iPhone
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             )}
             {activeTab === 'preview' && (
