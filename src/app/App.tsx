@@ -89,7 +89,8 @@ function MainApp() {
   const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff'>('pitch');
   const { t } = useLanguage();
   const { scrollYProgress } = useScroll();
-  const flyingLogoX = useTransform(scrollYProgress, [0, 0.2], ['0px', 'calc(50vw - 150px)']);
+  const flyingLogoY = useTransform(scrollYProgress, [0, 1], ['10vh', '85vh']);
+  const flyingLogoX = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], ['20px', '60px', '20px', '80px', '20px']);
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#E60000] selection:text-white relative">
@@ -99,19 +100,25 @@ function MainApp() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#E60000]/10 blur-[120px] rounded-full" />
       </div>
 
+      {/* Free-floating Bird on the left side */}
+      <motion.div 
+        style={{ y: flyingLogoY, x: flyingLogoX }}
+        className="fixed top-0 left-0 z-50 pointer-events-none"
+      >
+        <motion.div
+          animate={{ y: [0, -15, 0], rotate: [0, 5, -5, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="w-16 h-16 md:w-20 md:h-20"
+        >
+          <HummingbirdLogo className="w-full h-full text-[#E60000] drop-shadow-[0_0_15px_rgba(230,0,0,0.5)]" />
+        </motion.div>
+      </motion.div>
+
       <div className="relative z-10 flex flex-col min-h-screen">
         
         {/* Header */}
         <header className="px-6 py-4 flex items-center justify-between border-b border-[#333333] bg-[#0A0A0A]/80 backdrop-blur-md sticky top-0 z-50">
           
-          {/* Animated Logo (Starts left, moves to center text) */}
-          <motion.div 
-            style={{ x: flyingLogoX }}
-            className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10"
-          >
-            <HummingbirdLogo className="w-full h-full text-[#E60000]" />
-          </motion.div>
-
           {/* Invisible spacer to balance the flex layout */}
           <div className="w-10"></div>
           
