@@ -89,7 +89,7 @@ function MainApp() {
   const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff'>('pitch');
   const { t } = useLanguage();
   const { scrollYProgress } = useScroll();
-  const headerLogoX = useTransform(scrollYProgress, [0, 0.2], ['-45vw', '0vw']);
+  const flyingLogoX = useTransform(scrollYProgress, [0, 0.3], ['-10vw', '100vw']);
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#E60000] selection:text-white relative">
@@ -101,20 +101,22 @@ function MainApp() {
 
       <div className="relative z-10 flex flex-col min-h-screen">
         
+        {/* Free-floating Flying Logo */}
+        <motion.div 
+          style={{ x: flyingLogoX }}
+          className="absolute top-[120px] left-0 z-0 pointer-events-none"
+        >
+          <HummingbirdLogo className="w-32 h-32 text-[#E60000] opacity-80" />
+        </motion.div>
+
         {/* Header */}
         <header className="px-6 py-4 flex items-center justify-between border-b border-[#333333] bg-[#0A0A0A]/80 backdrop-blur-md sticky top-0 z-50">
           
           {/* Invisible spacer to balance the flex layout */}
           <div className="w-10"></div>
           
-          {/* Centered Logo & Text */}
+          {/* Centered Text */}
           <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-4">
-            <motion.div 
-              style={{ x: headerLogoX }}
-              className="w-12 h-12 flex items-center justify-center"
-            >
-              <HummingbirdLogo className="w-full h-full text-[#E60000]" />
-            </motion.div>
             <div className="text-left">
               <h1 className="text-xl md:text-2xl font-black tracking-tight leading-none">USHUAÏA</h1>
               <p className="text-[10px] md:text-xs text-[#D4AF37] tracking-widest uppercase font-bold">Experience Pitch</p>
