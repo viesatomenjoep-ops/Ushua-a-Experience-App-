@@ -39,20 +39,20 @@ function PitchOverview() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="space-y-16"
+      className="space-y-10"
     >
       {/* Introduction */}
-      <div className="max-w-3xl mx-auto text-center space-y-6">
-        <h2 className="text-4xl md:text-6xl font-black text-white leading-tight uppercase tracking-tighter">
+      <div className="max-w-3xl mx-auto text-center space-y-4">
+        <h2 className="text-3xl md:text-5xl font-black text-white leading-tight uppercase tracking-tighter">
           {t('hero.title')}
         </h2>
-        <p className="text-xl text-gray-400">
+        <p className="text-sm md:text-lg text-gray-400">
           {t('hero.subtitle')}
         </p>
       </div>
 
       {/* Pricing Models */}
-      <div className="space-y-8">
+      <div className="space-y-6">
         <div className="text-center">
           <h3 className="text-xl md:text-2xl font-bold text-white mb-3 uppercase tracking-widest">{t('pricing.title')}</h3>
           <div className="w-24 h-1 bg-[#E60000] mx-auto" />

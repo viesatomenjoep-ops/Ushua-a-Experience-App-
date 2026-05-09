@@ -37,23 +37,23 @@ export function PricingCard({ title, price, description, features, highlightColo
         <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#E60000] via-red-500 to-[#E60000]" />
       )}
       
-      <div className={`p-6 ${headerBg} border-b border-[#333333]`}>
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-sm text-gray-400 mb-4 h-10">{description}</p>
-        <div className="text-3xl font-black text-white">{price}</div>
+      <div className={`p-4 md:p-5 ${headerBg} border-b border-[#333333]`}>
+        <h3 className="text-lg font-bold text-white mb-1">{title}</h3>
+        <p className="text-xs text-gray-400 mb-3 h-8 leading-tight">{description}</p>
+        <div className="text-xl md:text-2xl font-black text-white">{price}</div>
       </div>
       
-      <div className="p-6 flex-1 flex flex-col">
-        <ul className="space-y-4 mb-8 flex-1">
+      <div className="p-4 md:p-5 flex-1 flex flex-col">
+        <ul className="space-y-2.5 mb-6 flex-1">
           {features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-3 text-sm text-gray-300">
-              <Check className={`w-5 h-5 shrink-0 ${iconColor}`} />
+            <li key={i} className="flex items-start gap-2 text-xs md:text-sm text-gray-300">
+              <Check className={`w-4 h-4 shrink-0 mt-0.5 ${iconColor}`} />
               <span>{feature.text}</span>
             </li>
           ))}
         </ul>
         
-        <button className={`w-full py-3 rounded-none font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg ${buttonColor}`}>
+        <button className={`w-full py-2.5 rounded-none font-bold text-[10px] tracking-widest uppercase transition-all duration-300 shadow-lg ${buttonColor}`}>
           Select Model
         </button>
       </div>
