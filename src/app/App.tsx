@@ -5,6 +5,7 @@ import { PricingCard } from './components/PricingCard';
 import { ROICalculator } from './components/ROICalculator';
 import { VipUpsellView } from './components/VipUpsellView';
 import { StaffDashboardView } from './components/StaffDashboardView';
+import { MobileAppPreview } from './components/MobileAppPreview';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { HummingbirdLogo } from './components/HummingbirdLogo';
 import '../styles/custom.css';
@@ -107,7 +108,7 @@ function PitchOverview() {
 }
 
 function MainApp() {
-  const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff'>('pitch');
+  const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff' | 'preview'>('pitch');
   const { t } = useLanguage();
   const { scrollYProgress } = useScroll();
   const flyingLogoY = useTransform(scrollYProgress, [0, 1], ['0px', '85vh']);
@@ -155,7 +156,7 @@ function MainApp() {
       <div className="relative z-10 flex flex-col min-h-screen">
         
         {/* Header */}
-        <header className="px-6 py-4 md:py-6 flex items-center justify-between border-b border-[#333333] bg-black/90 backdrop-blur-md sticky top-0 z-50">
+        <header className="px-6 py-6 md:py-10 flex items-center justify-between border-b border-[#333333] bg-black/90 backdrop-blur-md sticky top-0 z-50">
           
           {/* Mobile Logo (Bobbing up and down, stays in header) */}
           <div className="absolute left-6 top-1/2 -translate-y-1/2 z-50 pointer-events-none md:hidden">
@@ -176,7 +177,7 @@ function MainApp() {
             <img 
               src="/ushuaia-logo.png" 
               alt="Ushuaia Luanda Beach Club" 
-              className="h-10 md:h-12 object-contain"
+              className="h-16 md:h-24 object-contain"
             />
           </div>
           
@@ -192,10 +193,11 @@ function MainApp() {
               { id: 'pitch', label: t('nav.pitch') },
               { id: 'vip', label: t('nav.vip') },
               { id: 'staff', label: t('nav.staff') },
+              { id: 'preview', label: t('nav.preview') },
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as 'pitch' | 'vip' | 'staff')}
+                onClick={() => setActiveTab(tab.id as 'pitch' | 'vip' | 'staff' | 'preview')}
                 className={`px-8 py-3 text-xs tracking-widest uppercase font-bold transition-all duration-300 ${
                   activeTab === tab.id 
                     ? 'bg-[#E60000] text-white shadow-lg' 
@@ -229,7 +231,17 @@ function MainApp() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
               >
-                <StaffDashboardView />
+                <StaffDashboardView onPreviewClick={() => setActiveTab('preview')} />
+              </motion.div>
+            )}
+            {activeTab === 'preview' && (
+              <motion.div
+                key="preview"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+              >
+                <MobileAppPreview />
               </motion.div>
             )}
           </AnimatePresence>

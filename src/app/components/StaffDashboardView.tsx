@@ -2,7 +2,11 @@ import { ShieldAlert, Map, CheckCircle2, MessageSquare, Bell } from 'lucide-reac
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 
-export function StaffDashboardView() {
+interface StaffDashboardViewProps {
+  onPreviewClick?: () => void;
+}
+
+export function StaffDashboardView({ onPreviewClick }: StaffDashboardViewProps) {
   const { t } = useLanguage();
 
   return (
@@ -136,6 +140,17 @@ export function StaffDashboardView() {
               <p className="text-sm text-gray-400">Housekeeping and runners receive tasks directly on their devices, streamlining operations and keeping the venue spotless.</p>
             </div>
           </div>
+        </div>
+
+        {/* Prototype Link */}
+        <div className="pt-8 mt-8 border-t border-[#333333]">
+          <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4 text-[#D4AF37]">Guest Experience</h4>
+          <button 
+            onClick={onPreviewClick}
+            className="w-full py-4 bg-[#E60000] text-white font-bold uppercase tracking-widest text-xs hover:bg-[#CC0000] transition-colors flex items-center justify-center gap-2"
+          >
+            Ga naar preview app voor mobiel voor een iPhone
+          </button>
         </div>
       </div>
     </div>
