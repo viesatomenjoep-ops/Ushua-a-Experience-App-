@@ -21,13 +21,12 @@ function CustomCursor() {
   }, []);
 
   return (
-    <motion.div
+    <div
       className="fixed top-0 left-0 z-[99999] pointer-events-none"
-      animate={{ x: mousePosition.x - 12, y: mousePosition.y - 12 }}
-      transition={{ type: 'spring', stiffness: 500, damping: 28, mass: 0.5 }}
+      style={{ transform: `translate(${mousePosition.x - 12}px, ${mousePosition.y - 12}px)` }}
     >
       <HummingbirdLogo className="w-6 h-6 text-[#E60000] drop-shadow-[0_0_8px_rgba(230,0,0,0.8)]" />
-    </motion.div>
+    </div>
   );
 }
 
@@ -111,21 +110,18 @@ function MainApp() {
   const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff'>('pitch');
   const { t } = useLanguage();
   const { scrollYProgress } = useScroll();
-  const flyingLogoY = useTransform(scrollYProgress, 
-    [0, 0.2, 0.4, 0.6, 0.8, 1], 
-    ['0px', '35vh', '25vh', '65vh', '50vh', '90vh']
-  );
+  const flyingLogoY = useTransform(scrollYProgress, [0, 1], ['0px', '85vh']);
   const flyingLogoX = useTransform(scrollYProgress, 
-    [0, 0.2, 0.4, 0.6, 0.8, 1], 
-    ['0px', '130px', '20px', '200px', '40px', '160px']
+    [0, 0.25, 0.5, 0.75, 1], 
+    ['0px', '30px', '10px', '40px', '20px']
   );
   const flyingLogoRotate = useTransform(scrollYProgress, 
-    [0, 0.2, 0.4, 0.6, 0.8, 1], 
-    [0, 15, -15, 25, -10, 15]
+    [0, 0.25, 0.5, 0.75, 1], 
+    [0, 10, -5, 12, 0]
   );
   const flyingLogoScale = useTransform(scrollYProgress,
-    [0, 0.2, 0.4, 0.6, 0.8, 1],
-    [1, 1.25, 0.9, 1.35, 0.85, 1.15]
+    [0, 0.5, 1],
+    [1, 1.2, 1]
   );
 
   return (
