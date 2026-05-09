@@ -59,12 +59,39 @@ export function MobileAppPreview() {
           </motion.div>
         );
       case 'vip':
-      case 'events':
         return (
           <motion.div key={activeScreen} initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -50, opacity: 0 }} className="p-4 space-y-4 flex flex-col items-center justify-center h-full text-center">
             <Calendar className="w-12 h-12 text-[#E60000] mb-4" />
-            <h3 className="text-xl font-black uppercase tracking-widest text-white">{activeScreen === 'vip' ? 'VIP Tables' : 'Events'}</h3>
+            <h3 className="text-xl font-black uppercase tracking-widest text-white">VIP Tables</h3>
             <p className="text-xs text-gray-500 uppercase tracking-widest">Connects directly to ticket engine.</p>
+          </motion.div>
+        );
+      case 'events':
+        const julyEvents = [
+          { date: 'July 1', title: 'Tomorrowland', subtitle: 'Dimitri Vegas & Like Mike' },
+          { date: 'July 2', title: 'Martin Garrix', subtitle: '' },
+          { date: 'July 3', title: 'Calvin Harris', subtitle: '' },
+          { date: 'July 4', title: 'ANTS', subtitle: '' },
+          { date: 'July 5', title: 'Swedish House Mafia', subtitle: '' },
+          { date: 'July 6', title: "F*** Me I'm Famous", subtitle: 'by David Guetta' },
+          { date: 'July 7', title: 'Calvin Harris', subtitle: '' },
+        ];
+        return (
+          <motion.div key="events" initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -50, opacity: 0 }} className="p-4 space-y-4">
+            <h3 className="text-xl font-black uppercase tracking-widest text-white mb-6 border-b border-[#333333] pb-4">Events Calendar</h3>
+            <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-4">July 1 - July 7</p>
+            {julyEvents.map((ev, i) => (
+              <div key={i} className="bg-[#111111] border border-[#333333] p-4 flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] text-[#E60000] font-bold uppercase tracking-widest mb-1">{ev.date}</p>
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-white">{ev.title}</h4>
+                  {ev.subtitle && <p className="text-[9px] text-gray-400 mt-1 uppercase tracking-widest">{ev.subtitle}</p>}
+                </div>
+                <button className="px-4 py-2 bg-white text-black text-[9px] font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">
+                  Tickets
+                </button>
+              </div>
+            ))}
           </motion.div>
         );
       default:
