@@ -89,7 +89,6 @@ function MainApp() {
   const [activeTab, setActiveTab] = useState<'pitch' | 'vip' | 'staff'>('pitch');
   const { t } = useLanguage();
   const { scrollYProgress } = useScroll();
-  const bgXTransform = useTransform(scrollYProgress, [0, 1], ['-40vw', '120vw']);
   const headerLogoX = useTransform(scrollYProgress, [0, 0.2], ['-40vw', '0vw']);
 
   return (
@@ -99,14 +98,6 @@ function MainApp() {
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#E60000]/10 blur-[120px] rounded-full" />
       </div>
-
-      {/* Flying Hummingbird Background Logo */}
-      <motion.div 
-        style={{ x: bgXTransform }} 
-        className="fixed top-[10%] left-0 z-0 opacity-[0.03] pointer-events-none"
-      >
-        <HummingbirdLogo className="w-[1200px] h-[1200px] text-[#E60000]" />
-      </motion.div>
 
       <div className="relative z-10 flex flex-col min-h-screen">
         
