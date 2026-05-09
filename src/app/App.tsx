@@ -156,7 +156,7 @@ function MainApp() {
       <div className="relative z-10 flex flex-col min-h-screen">
         
         {/* Header */}
-        <header className="px-6 py-6 md:py-8 flex items-center justify-between border-b border-[#333333] bg-black/90 backdrop-blur-md sticky top-0 z-50">
+        <header className="px-6 py-6 md:py-10 flex items-center justify-between border-b border-[#333333] bg-black/90 backdrop-blur-md sticky top-0 z-50">
           
           {/* Mobile Logo (Bobbing up and down, stays in header) */}
           <div className="absolute left-6 top-1/2 -translate-y-1/2 z-50 pointer-events-none md:hidden">
@@ -177,7 +177,7 @@ function MainApp() {
             <img 
               src="/ushuaia-logo.png" 
               alt="Ushuaia Luanda Beach Club" 
-              className="h-20 md:h-28 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+              className="h-28 md:h-40 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
             />
           </div>
           
